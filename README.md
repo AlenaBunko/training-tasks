@@ -1,1 +1,1 @@
-# MyFirstProjectOnGradle
+# TrainingTasksOnGradle
