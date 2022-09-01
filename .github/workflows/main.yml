@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
            distribution: temurin
-           java-version: 1.8.0_41
+           java-version: 11
       
       - name: List current folder
         run : ls -la
