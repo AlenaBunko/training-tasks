@@ -1,1 +1,1 @@
-# TrainingTasksOnGradle
+#  training-tasks 
