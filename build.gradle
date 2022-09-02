@@ -1,23 +1,17 @@
 plugins {
     id 'java'
-    id 'application'
+    id 'java-library'
 }
 
-apply plugin: 'application'
-
-group 'lenaBunko.tasks'
+group 'com.github.alenabunko'
 version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-mainClassName = 'lenaBunko.tasks.MyMainClass'
 
 repositories {
     mavenCentral()
 }
 
 jar{
-    archiveBaseName = 'TrainingTasksOnGradle'
+    archiveBaseName = 'training-tasks'
     archiveVersion = '0.1.0'
 }
 
