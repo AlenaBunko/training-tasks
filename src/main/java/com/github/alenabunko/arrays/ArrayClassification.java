@@ -22,7 +22,7 @@ public class ArrayClassification {
 
         for (int i = 1; i < a.length - 1; i++) {
 
-            if ((a[i - 1] < a[i] && a[i] > a[i + 1]) || (a[i - 1] > a[i] && a[i] < a[i + 1])) {
+            if ((a[i - 1] <= a[i] && a[i] > a[i + 1]) || (a[i - 1] >= a[i] && a[i] < a[i + 1])) {
                 return "other";
             }
         }

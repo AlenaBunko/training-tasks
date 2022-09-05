@@ -35,4 +35,9 @@ class ArrayClassificationTest {
     void testIncreasingArrayWithRepeatingElements() {
         assertEquals("increasing", ArrayClassification.classification(new int[]{1, 1, 20, 300}));
     }
+
+    @Test
+    void testFirstAndLastElementsAreTheSame(){
+        assertEquals("other", ArrayClassification.classification(new int[]{0, 1, 1, 0}));
+    }
 }
