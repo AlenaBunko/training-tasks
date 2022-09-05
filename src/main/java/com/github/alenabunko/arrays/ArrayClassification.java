@@ -14,27 +14,29 @@ public class ArrayClassification {
      */
 
     public static String classification(int[] a) {
-        String result;
+        String result = "";
 
         if (a.length == 0) {
             return "empty";
         }
 
         for (int i = 1; i < a.length - 1; i++) {
-
-            if ((a[i - 1] <= a[i] && a[i] > a[i + 1]) || (a[i - 1] >= a[i] && a[i] < a[i + 1])) {
-                return "other";
+            if (a[i - 1] <= a[i]) {
+                if (a[i] > a[i + 1]) {
+                    result = "other";
+                } else if (a[0] < a[a.length - 1]) {
+                    result = "increasing";
+                } else {
+                    result = "constant";
+                }
+            } else {
+                if (a[i] > a[i + 1] && a[0] > a[a.length - 1]) {
+                    result = "decreasing";
+                } else {
+                    return "other";
+                }
             }
         }
-
-        if (a[0] < a[a.length - 1]) {
-            result = "increasing";
-        } else if (a[0] > a[a.length - 1]) {
-            result = "decreasing";
-        } else {
-            result = "constant";
-        }
-
         return result;
     }
 }
