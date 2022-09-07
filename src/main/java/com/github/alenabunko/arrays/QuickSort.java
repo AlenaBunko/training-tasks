@@ -2,18 +2,23 @@ package com.github.alenabunko.arrays;
 
 /**
  * Задача 1.4 Быстрая сортировка массива
+ * Имеется массив чисел (int[]).
+ * Требуется реализовать сортировку исходного массива, используя быстрый алгоритм сортировки (quicksort).
  */
 public class QuickSort {
 
     /**
      * Метод реализует быструю сортировку массива а
      *
-     * @param a     - исходный массив
-     * @param from- начальный элемент массива
-     * @param to    - конечный элемент массива
-     * @return отсортированный массив
+     * @param a исходный массив
      */
-    public static int[] quick(int[] a, int from, int to) {
+    public static void sort(int[] a) {
+        int from = 0;
+        int to = a.length - 1;
+        quick(a, from, to);
+    }
+
+    private static int[] quick(int[] a, int from, int to) {
 
         if (from < to) {
             int divideIndex = partition(a, from, to);
