@@ -3,7 +3,6 @@ package com.github.alenabunko.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalInt;
 
 /**
  * Дети с наибольшим количеством конфет
@@ -23,19 +22,19 @@ public class KidsWithTheGreatestNumberOfCandies {
     /**
      * Метод сравнивает общее количество конфет с наибольшим количеством конфет i-го ребенка в исходном массиве candies
      *
-     * @param candies      исходный целочесленный массив конфет
-     * @param extraCandies количество  дополнительных конфет, которое нужно отдать каждому ребенку
+     * @param candies      исходный целочисленный массив конфет
+     * @param extraCandies количество дополнительных конфет, которое нужно отдать каждому ребенку
      * @return спискок элементов типа Boolean c элементами true, если общее количество конфет больше наибольшего количества конфет,
      * в противном случае элемент false
      */
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+
         List<Boolean> maxNumberOfCandies = new ArrayList<>();
-        OptionalInt max = Arrays.stream(candies).max();
 
-        int maxElement = (max.isPresent()) ? max.getAsInt() : 0;
+        int maxElement = Arrays.stream(candies).max().orElse(0);
 
-        for (int candy : candies) {
-            int tempElement = candy + extraCandies;
+        for (int allCandiesOneChild : candies) {
+            int tempElement = allCandiesOneChild + extraCandies;
 
             boolean b = tempElement >= maxElement;
             maxNumberOfCandies.add(b);

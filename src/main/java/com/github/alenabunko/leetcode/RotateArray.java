@@ -1,16 +1,13 @@
 package com.github.alenabunko.leetcode;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 import static java.lang.System.arraycopy;
 
 /**
  * Дан массив, поверните массив вправо на k шагов, где k неотрицательно.
  * Ограничения:
- * 1 <= nums.length <= 105
- * -231 <= nums[i] <= 231 - 1
- * 0 <= k <= 105
+ * 1 <= nums.length <= 10^5
+ * -2^31 <= nums[i] <= 2^31 - 1
+ * 0 <= k <= 10^5
  */
 public class RotateArray {
 
@@ -19,31 +16,18 @@ public class RotateArray {
      * часть массива, начиная с нулевого элемента, но уже с позиции k в исходном массиве
      *
      * @param nums исходный массив
-     * @param k    исходный массив с учетом перестановки элементов
+     * @param k количество элементов в конце массива, которые должны быть перенесены в начало, сохраняя последовательность
      */
     public void rotate(int[] nums, int k) {
 
-        if (nums.length >= k) {
-            join(nums, k);
-        } else {
-            k %= nums.length;
-            join(nums, k);
-        }
-    }
+        k %= nums.length;
 
-    static void join(int[] nums, int k) {
-        int[] intOne = Arrays.stream(nums)
-                .skip(nums.length - k)
-                .limit(k)
-                .toArray();
+        int[] buffer = new int[k];
 
-        int[] intTwo = Arrays.stream(nums)
-                .skip(0)
-                .limit(nums.length - k)
-                .toArray();
+        arraycopy(nums, nums.length - k, buffer, 0, k);
 
-        int[] expectedNums = IntStream.concat(IntStream.of(intOne), IntStream.of(intTwo)).toArray();
+        arraycopy(nums, 0, nums, k, nums.length - k);
 
-        arraycopy(expectedNums, 0, nums, 0, nums.length);
+        arraycopy(buffer, 0, nums, 0, k);
     }
 }

@@ -3,11 +3,11 @@ package com.github.alenabunko.leetcode;
 /**
  * Вам дан целочисленный массив, prices, где prices[i] цена данной акции в день i
  * Каждый день вы можете решить купить и/или продать акции. В любой момент времени вы можете владеть не более, чем одной акцией.
- * Однако вы можете купить его и тут же продать в тот же день .
+ * Однако вы можете купить его и тут же продать в тот же день.
  * Найдите и верните максимальную прибыль, которую вы можете получить .
  * Ограничения:
- * 1 <= prices.length <= 3 * 104
- * 0 <= prices[i] <= 104
+ * 1 <= prices.length <= 3 * 10^4
+ * 0 <= prices[i] <= 10^4
  */
 public class BestTimeToBuyAndSellStock {
 
@@ -21,37 +21,14 @@ public class BestTimeToBuyAndSellStock {
     public int maxProfit(int[] prices) {
         int profit = 0;
 
-        if ((prices.length) == 1) {
-            return 0;
-        }
-
-        boolean hasDecreasing = false;
-        boolean hasIncreasing = false;
-
         for (int i = 0; i < prices.length - 1; i++) {
-            int compare = Integer.compare(prices[i], prices[i + 1]);
-
-            hasDecreasing |= compare > 0;
-            hasIncreasing |= compare < 0;
-        }
-
-        int purchasePrice;
-        int sellingPrice;
-
-        if (hasIncreasing && hasDecreasing) {
-            for (int i = 0; i < prices.length - 1; i++) {
-                if (prices[i] < prices[i + 1]) {
-                    purchasePrice = prices[i];
-                    sellingPrice = prices[i + 1];
-                    profit += (sellingPrice - purchasePrice);
-                }
+            if (prices[i] < prices[i + 1]) {
+                int purchasePrice = prices[i];
+                int sellingPrice = prices[i + 1];
+                profit += (sellingPrice - purchasePrice);
             }
-            return profit;
         }
-        if (hasIncreasing) {
-            return prices[prices.length - 1] - prices[0];
-        } else {
-            return 0;
-        }
+        return profit;
+
     }
 }

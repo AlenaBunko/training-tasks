@@ -3,11 +3,11 @@ package com.github.alenabunko.leetcode;
 import java.util.Arrays;
 
 /**
- * Учитывая целочисленный массив nums, вернуть true, если какое-либо значение встречается в массиве не менее двух раз,
- * и вернуть false, если каждый элемент различен.
+ * Дан целочисленный массив nums, вернуть true, если какое-либо значение встречается в массиве не менее двух раз,
+ * и вернуть false, если каждый элемент уникален.
  * Ограничения:
- * 1 <= nums.length <= 105
- * -109 <= nums[i] <= 109
+ * 1 <= nums.length <= 10^5
+ * -10^9 <= nums[i] <= 10^9
  */
 public class ContainsDuplicate {
 
@@ -18,6 +18,12 @@ public class ContainsDuplicate {
      * @return true, если дубликаты есть, в противном случае - false
      */
     public boolean containsDuplicate(int[] nums) {
-        return Arrays.stream(nums).distinct().count() != nums.length;
+
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) return true;
+        }
+        return false;
     }
 }

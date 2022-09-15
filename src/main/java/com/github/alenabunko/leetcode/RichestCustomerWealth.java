@@ -1,9 +1,5 @@
 package com.github.alenabunko.leetcode;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
-
 /**
  * Задача 1672 Богатство самого богатого клиента
  * Вам дано m x n целочисленных счетов сетки, где account[i][j] — сумма денег, которую i-ого клиента в j-том банке.
@@ -25,23 +21,16 @@ public class RichestCustomerWealth {
      */
     public int maximumWealth(int[][] accounts) {
 
-        TreeMap<Integer, Integer> customerAccount = new TreeMap<>();
+        int wealth = 0;
 
-        int customer = 0;
-
-        for (int i = 0; i < accounts.length; i++) {
-            int wealth = 0;
-            for (int j = 0; j < accounts[i].length; j++) {
-                wealth += accounts[i][j];
+        for (int[] account : accounts) {
+            int temp = 0;
+            for (int i : account) {
+                temp += i;
             }
-            customer += 1;
-            customerAccount.put(customer, wealth);
+            wealth = Math.max(wealth, temp);
         }
 
-        Optional<Map.Entry<Integer, Integer>> maxEntry = customerAccount.entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue());
-
-        return (maxEntry.isPresent()) ? maxEntry.get().getValue() : 0;
+        return wealth;
     }
 }

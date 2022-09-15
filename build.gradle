@@ -10,10 +10,19 @@ repositories {
     mavenCentral()
 }
 
-jar{
+jar {
     archiveBaseName = 'training-tasks'
     archiveVersion = '0.1.0'
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
