@@ -21,24 +21,19 @@ public class PlusOne {
      * @return результирующий массив, содержащий целое число, увеличенное на единицу, каждая цифра которого расположена в отдельной ячейке
      */
     public int[] plusOne(int[] digits) {
-        if (digits[digits.length - 1] < 9) {
-            digits[digits.length - 1] += 1;
-            return digits;
-        } else {
-            for (int i = digits.length - 1; i >= 0; i--) {
-                if (digits[i] == 9) {
-                    digits[i] = 0;
-                } else {
-                    digits[i] += 1;
-                    break;
-                }
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] == 9) {
+                digits[i] = 0;
+            } else {
+                digits[i] += 1;
+                break;
             }
-            if (digits[0] == 0) {
-                int[] result = new int[digits.length + 1];
-                result[0] = 1;
-                arraycopy(digits, 0, result, 1, digits.length - 1);
-                return result;
-            }
+        }
+        if (digits[0] == 0) {
+            int[] result = new int[digits.length + 1];
+            result[0] = 1;
+            arraycopy(digits, 0, result, 1, digits.length - 1);
+            return result;
         }
         return digits;
     }

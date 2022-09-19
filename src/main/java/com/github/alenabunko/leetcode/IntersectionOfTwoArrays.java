@@ -1,9 +1,6 @@
 package com.github.alenabunko.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Задача Пересечение двух массивов II
@@ -23,26 +20,21 @@ public class IntersectionOfTwoArrays {
      * @return массив элементов, которые встречаются в обоих массивах
      */
     public int[] intersect(int[] nums1, int[] nums2) {
-        HashMap<Integer, Integer> hashMapNums1 = new HashMap<>();
-        HashMap<Integer, Integer> hashMapNums2 = new HashMap<>();
+
+        Map<Integer, Integer> valueFromNum1ToCount = countsByValue(nums1);
+        Map<Integer, Integer> valueFromNum2ToCount = countsByValue(nums2);
+
+        Set<Integer> nums = new HashSet<>();
+        nums.addAll(valueFromNum1ToCount.keySet());
+        nums.addAll(valueFromNum2ToCount.keySet());
+
         List<Integer> list = new ArrayList<>();
-
-        fillInTheHashMap(nums1, hashMapNums1);
-        fillInTheHashMap(nums2, hashMapNums2);
-
-        for (Map.Entry<Integer, Integer> entries1 : hashMapNums1.entrySet()) {
-            Integer keyHashMap1 = entries1.getKey();
-
-            for (Map.Entry<Integer, Integer> entries2 : hashMapNums2.entrySet()) {
-                Integer keyHashMap2 = entries2.getKey();
-
-                if (keyHashMap1.equals(keyHashMap2)) {
-                    int valueForList = entries1.getValue() < entries2.getValue() ? entries1.getValue() : entries2.getValue();
-
-                    for (int n = 0; n < valueForList; n++) {
-                        list.add(keyHashMap1);
-                    }
-                }
+        for (int num : nums) {
+            int countInNums1 = valueFromNum1ToCount.getOrDefault(num, 0);
+            int countInNums2 = valueFromNum2ToCount.getOrDefault(num, 0);
+            int minValue = Math.min(countInNums1, countInNums2);
+            for (int i = 0; i < minValue; i++) {
+                list.add(num);
             }
         }
 
@@ -54,16 +46,12 @@ public class IntersectionOfTwoArrays {
         return result;
     }
 
-    static void fillInTheHashMap(int[] nums, HashMap<Integer, Integer> hashMapNums) {
-
+    static Map<Integer, Integer> countsByValue(int[] nums) {
+        Map<Integer, Integer> result = new HashMap<>();
         for (int k : nums) {
-            int count = 0;
-            for (int i : nums) {
-                if (k == i) {
-                    count++;
-                }
-            }
-            hashMapNums.put(k, count);
+            result.put(k, 1 + result.getOrDefault(k, 0));
         }
+
+        return result;
     }
 }
