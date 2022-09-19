@@ -28,10 +28,10 @@ public class ValidSudoku {
 
         boolean isCorrect = true;
 
-        for (char[] chars : board) {
-            for (int j = 0; j < chars.length; j++) {
+        for (char[] row : board) {
+            for (int j = 0; j < row.length; j++) {
                 for (int n = 0; n < board.length; n++) {
-                    if (chars[j] == chars[n] && chars[j] != '.' && j != n) {
+                    if (row[j] == row[n] && row[j] != '.' && j != n) {
                         isCorrect = false;
                         break;
                     }
@@ -39,10 +39,10 @@ public class ValidSudoku {
             }
         }
 
-        for (int c = 0; c < board.length; c++) {
-            for (int m = 0; m < board[c].length; m++) {
+        for (char[] column : board) {
+            for (int m = 0; m < column.length; m++) {
                 for (int r = 0; r < board.length; r++) {
-                    if (board[m][c] == board[r][c] && board[m][c] != '.' && m != r) {
+                    if (column[m] == column[r] && column[m] != '.' && m != r) {
                         isCorrect = false;
                         break;
                     }
