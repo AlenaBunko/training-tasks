@@ -13,6 +13,7 @@ public class RomanToInteger {
 
     /**
      * Метод преобразовывает римские цифры в число
+     *
      * @param s римские цифры
      * @return число
      */
@@ -22,22 +23,36 @@ public class RomanToInteger {
 
         for (int i = s.length() - 1; i >= 0; i--) {
             switch (s.charAt(i)) {
-                case 'I' -> result.add(1);
-                case 'V' -> result.add(5);
-                case 'X' -> result.add(10);
-                case 'L' -> result.add(50);
-                case 'C' -> result.add(100);
-                case 'D' -> result.add(500);
-                case 'M' -> result.add(1000);
+                case 'I':
+                    result.add(1);
+                    break;
+                case 'V':
+                    result.add(5);
+                    break;
+                case 'X':
+                    result.add(10);
+                    break;
+                case 'L':
+                    result.add(50);
+                    break;
+                case 'C':
+                    result.add(100);
+                    break;
+                case 'D':
+                    result.add(500);
+                    break;
+                case 'M':
+                    result.add(1000);
+                    break;
             }
         }
 
         int number = result.get(0);
 
         for (int j = 1; j < result.size(); j++) {
-            if (result.get(j) < result.get(j - 1)){
+            if (result.get(j) < result.get(j - 1)) {
                 number -= result.get(j);
-            }else {
+            } else {
                 number += result.get(j);
             }
         }
