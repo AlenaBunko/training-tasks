@@ -17,19 +17,14 @@ public class PalindromeNumber {
      * @return true, если x палиндром, в обратном случае - false
      */
     public boolean isPalindrome(int x) {
-        boolean isTrue = false;
-        if (x >= 0) {
-            String s = String.valueOf(x);
-            for (int i = 0; i <= s.length() / 2; ) {
-                for (int j = s.length() - 1; j >= s.length() / 2; j--) {
-                    if (s.charAt(i) != s.charAt(j)) {
-                        return false;
-                    }
-                    i++;
-                }
-                isTrue = true;
+        String result = String.valueOf(x);
+        int start = 0;
+        int end = result.length() - 1;
+        while (start < end) {
+            if (result.charAt(start++) != result.charAt(end--)) {
+                return false;
             }
         }
-        return isTrue;
+        return true;
     }
 }
