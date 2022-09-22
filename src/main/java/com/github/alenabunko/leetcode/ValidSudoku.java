@@ -1,5 +1,7 @@
 package com.github.alenabunko.leetcode;
 
+import java.util.*;
+
 /**
  * Задача Действительный судоку
  * <a href="https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/769/">...</a>
@@ -27,25 +29,57 @@ public class ValidSudoku {
     public boolean isValidSudoku(char[][] board) {
 
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                for (int n = j + 1; n < board.length; n++) {
-                    if (board[i][j] == board[i][n] && board[i][j] != '.' && j != n) {
-                        return false;
-                    }
-                }
+            if (hasDuplicates(getRowDigits(board, i)) || hasDuplicates(getColumnDigits(board, i))) {
+                return false;
+            }
+            if (hasDuplicates(getBlockDigits(board, i))) {
+                return false;
             }
         }
-
-        for (int c = 0; c < board.length; c++) {
-            for (int m = 0; m < board[c].length; m++) {
-                for (int r = c + 1; r < board.length; r++) {
-                    if (board[m][c] == board[r][c] && board[m][c] != '.' && m != r) {
-                        return false;
-                    }
-                }
-            }
-        }
-
         return true;
+    }
+
+    boolean hasDuplicates(List<Integer> digits) {
+        Set<Integer> uniqueDigits = new HashSet<>(digits);
+        return uniqueDigits.size() != digits.size();
+    }
+
+    List<Integer> getRowDigits(char[][] board, int i) {
+        List<Integer> result = new ArrayList<>();
+        for (int n = 0; n < board.length; n++) {
+            char c = board[i][n];
+            if (c != '.') {
+                result.add(Character.digit(c, 10));
+            }
+        }
+        return result;
+    }
+
+    List<Integer> getColumnDigits(char[][] board, int i) {
+        List<Integer> result = new ArrayList<>();
+        for (int n = 0; n < board.length; n++) {
+            char c = board[n][i];
+            if (c != '.') {
+                result.add(Character.digit(c, 10));
+            }
+        }
+        return result;
+    }
+
+    List<Integer> getBlockDigits(char[][] board, int i) {
+        List<Integer> result = new ArrayList<>();
+        int startColIndex = (i % 3) * 3;
+        int startRowIndex = (i / 3) * 3;
+        int endColIndex = startColIndex + 3 - 1;
+        int endRowIndex = startRowIndex + 3 - 1;
+        for (int rowIndex = startRowIndex; rowIndex <= endRowIndex; rowIndex++) {
+            for (int colIndex = startColIndex; colIndex <= endColIndex; colIndex++) {
+                char c = board[rowIndex][colIndex];
+                if (c != '.') {
+                    result.add(Character.digit(c, 10));
+                }
+            }
+        }
+        return result;
     }
 }
