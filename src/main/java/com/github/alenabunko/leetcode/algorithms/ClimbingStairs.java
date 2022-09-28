@@ -16,12 +16,12 @@ public class ClimbingStairs {
      * @return количество способов, которыми можно добраться до вершины, делая n шагов
      */
     public int climbStairs(int n) {
-        int[] dp = new int[n + 1];
-        dp[0] = 1;
-        dp[1] = 1;
+        int[] result = new int[n + 1];
+        result[0] = 1;
+        result[1] = 1;
         for (int i = 2; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+            result[i] = result[i - 1] + result[i - 2];
         }
-        return dp[n];
+        return result[n];
     }
 }

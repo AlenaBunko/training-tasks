@@ -45,8 +45,9 @@ public class AddBinary {
             sb.append(sum == 0 ? '0' : '1');
         }
 
-        if (carry > 0)
+        if (carry > 0) {
             sb.append('1');
+        }
 
         sb.reverse();
         return String.valueOf(sb);

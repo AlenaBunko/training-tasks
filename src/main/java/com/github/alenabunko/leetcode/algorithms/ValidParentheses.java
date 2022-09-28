@@ -25,17 +25,32 @@ public class ValidParentheses {
      * в противном случае false
      */
     public boolean isValid(String s) {
-        if (s.length() % 2 != 0) return false;
-        Stack<Character> st = new Stack<>();
+
+        if (s.length() % 2 != 0) {
+            return false;
+        }
+
+        Stack<Character> stack = new Stack<>();
+
         for (char c : s.toCharArray()) {
-            if (c == '(' || c == '[' || c == '{') {
-                st.push(c);
-            } else if (st.empty()) {
+            if (isOpenBracket(c)) {
+                stack.push(c);
+            } else if (stack.empty()) {
                 return false;
-            } else if (c == ')' && st.pop() != '(' || c == '}' && st.pop() != '{' || c == ']' && st.pop() != '[') {
+            } else if (!isValidPair(stack.pop(), c)) {
                 return false;
             }
         }
-        return st.empty();
+        return stack.empty();
+    }
+
+    boolean isOpenBracket(char c) {
+        return c == '(' || c == '[' || c == '{';
+    }
+
+    boolean isValidPair(char left, char right) {
+        return (left == '(' && right == ')')
+            || (left == '{' && right == '}')
+            || (left == '[' && right == ']');
     }
 }
