@@ -27,12 +27,10 @@ public class ValidPalindrome {
 
         while (start < end) {
 
-            String startPosition = String.valueOf(s.charAt(start));
-            String endPosition = String.valueOf(s.charAt(end));
-
-            if (!startPosition.equals(endPosition)) {
+            if (s.charAt(start) != s.charAt(end)) {
                 return false;
             }
+
             start++;
             end--;
         }
