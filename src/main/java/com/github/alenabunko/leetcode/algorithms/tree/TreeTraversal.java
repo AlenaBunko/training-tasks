@@ -7,14 +7,9 @@ public class TreeTraversal {
 
     public List<List<Integer>> levelOrder(Node root) {
         List<List<Integer>> result = new ArrayList<>();
-        levelOrder(root, result);
-        return result;
-    }
-
-    private void levelOrder(Node root, List<List<Integer>> result) {
 
         if (root == null) {
-            return;
+            return result;
         }
 
         List<Node> currentLevelNodes = new ArrayList<>();
@@ -38,5 +33,6 @@ public class TreeTraversal {
                 }
             }
         }
+        return result;
     }
 }
