@@ -17,24 +17,24 @@ public class TreeTraversal {
             return;
         }
 
-        List<Node> parent = new ArrayList<>();
-        parent.add(root);
+        List<Node> currentLevelNodes = new ArrayList<>();
+        currentLevelNodes.add(root);
 
-        while (parent.size() > 0) {
+        while (currentLevelNodes.size() > 0) {
             List<Integer> temp = new ArrayList<>();
-            for (Node node : parent) {
+            for (Node node : currentLevelNodes) {
                 temp.add(node.val);
             }
 
             result.add(new ArrayList<>(temp));
 
-            List<Node> children = parent;
+            List<Node> prevLevelNodes = currentLevelNodes;
 
-            parent = new ArrayList<>();
+            currentLevelNodes = new ArrayList<>();
 
-            for (Node node : children) {
+            for (Node node : prevLevelNodes) {
                 if (node.children != null) {
-                    parent.addAll(node.children);
+                    currentLevelNodes.addAll(node.children);
                 }
             }
         }
