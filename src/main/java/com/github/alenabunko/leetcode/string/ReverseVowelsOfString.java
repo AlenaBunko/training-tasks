@@ -43,7 +43,17 @@ public class ReverseVowelsOfString {
     boolean isVowel(char c) {
         boolean isVowel = false;
         switch (c) {
-            case 'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U' -> isVowel = true;
+            case 'a':
+            case 'A':
+            case 'e':
+            case 'E':
+            case 'i':
+            case 'I':
+            case 'o':
+            case 'O':
+            case 'u':
+            case 'U':
+                isVowel = true;
         }
         return isVowel;
     }
