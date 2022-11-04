@@ -32,9 +32,9 @@ public class DetectCapital {
 
         String substringWord = word.substring(1, excludedIndex);
 
-        boolean hasUppercase = !word.equals(word.toUpperCase());
-        boolean hasLowercase = !substringWord.equals(substringWord.toLowerCase());
+        boolean hasAllLettersInUppercase = word.equals(word.toUpperCase());
+        boolean hasAllLowercaseLettersIgnoringFirst = substringWord.equals(substringWord.toLowerCase());
 
-        return !hasUppercase || !hasLowercase;
+        return hasAllLettersInUppercase || hasAllLowercaseLettersIgnoringFirst;
     }
 }
