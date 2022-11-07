@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Дети с наибольшим количеством конфет
+ * <a href="https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/">...</a>
  * Есть n детей с конфетами. Вам дан целочисленный массив конфет candies, где каждая конфета[i] представляет количество конфет,
  * которое есть у i-го ребенка, и целое число extraCandies, обозначающее количество дополнительных конфет, которые у вас есть.
  * Нужно вернуть результат логического массива длины n, где результат[i] равен true, если после передачи i-му ребенку всех
@@ -33,11 +34,10 @@ public class KidsWithTheGreatestNumberOfCandies {
 
         int maxElement = Arrays.stream(candies).max().orElse(0);
 
-        for (int allCandiesOneChild : candies) {
-            int tempElement = allCandiesOneChild + extraCandies;
+        candies = Arrays.stream(candies).map(i -> i + extraCandies).toArray();
 
-            boolean b = tempElement >= maxElement;
-            maxNumberOfCandies.add(b);
+        for (int n: candies) {
+            maxNumberOfCandies.add(n >= maxElement);
         }
         return maxNumberOfCandies;
     }

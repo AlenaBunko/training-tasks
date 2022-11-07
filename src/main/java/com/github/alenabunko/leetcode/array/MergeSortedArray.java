@@ -38,3 +38,4 @@ public class MergeSortedArray {
         Arrays.sort(nums1);
     }
 }
+
