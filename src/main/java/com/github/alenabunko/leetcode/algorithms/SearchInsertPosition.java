@@ -1,5 +1,7 @@
 package com.github.alenabunko.leetcode.algorithms;
 
+import java.util.Arrays;
+
 /**
  * Задача Поиск позиции вставки
  * <a href="https://leetcode.com/problems/search-insert-position/">...</a>
@@ -23,23 +25,12 @@ public class SearchInsertPosition {
      * @return позиция искомого числа в массиве
      */
     public int searchInsert(int[] nums, int target) {
-        int start = 0;
-        int end = nums.length - 1;
 
-        while (start <= end) {
-
-            int mid = (start + end) / 2;
-
-            if (nums[mid] == target) {
-                return mid;
-            } else {
-                if (target > nums[mid]) {
-                    start = mid + 1;
-                } else {
-                    end = mid - 1;
-                }
-            }
+        int index = Arrays.binarySearch(nums, target);
+        if (index < 0) {
+            return Math.abs(index) - 1;
         }
-        return end + 1;
+
+        return index;
     }
 }
